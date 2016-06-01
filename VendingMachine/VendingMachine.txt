@@ -1,0 +1,374 @@
+.data								# Data section stores all buffers which we define 			
+
+EnterCoins:								# Label for creating a  buffer to enter coins, labels are created because buffers can be used in text
+	.ascii "Please enter coins!\n\0"	# section using label
+NewLine:								# Label for creating a buffer for moving to new line 
+	.ascii "\n\0"
+Rupee:									# Label for creating a buffer for number of rupee coins	
+	.ascii "Rupee(s) :\0"
+Anna:									# Label for creating a buffer for number of anna coins
+	.ascii "Anna(s)  :\0"
+Paisa:									# Label for creating a buffer for number of paisa coins
+	.ascii "Paisa(s) :\0"
+Pie:									# Label for creating a buffer for number of pie coins
+	.ascii "Pie(s)   :\0"
+TotalPieOne:							# Label for creating a buffer for Total coins inserted
+	.ascii "You put in \0"
+TotalPieTwo:							# Label for creating a buffer for tatal coins inserted in pie
+	.ascii " pies!\n\0"
+VendingMachineName:						# Label for creating a buffer for name of vending machine
+	.ascii "Beach Accessories Vending Machine\n\0"
+AccessoriesOne:							# Label for creating a buffer for first accessory in vending machine
+	.ascii "1.Sun Cream                (35 pies)\n\0"
+AccessoriesTwo:							# Label for creating a buffer for second accessory in vending machine
+	.ascii "2.Sun Hat                  (45 pies)\n\0"
+AccessoriesThree:						# Label for creating a buffer for third accessory in vending machine
+	.ascii "3.Umbrella                 (40 pies)\n\0"
+AccessoriesFour:						# Label for creating a buffer for fourth accessory in vending machine
+	.ascii "4.Towel                    (50 pies)\n\0"
+AccessoriesFive:						# Label for creating a buffer for fifth accessory in vending machine
+	.ascii "5.Waterproof Playing Cards (90 pies)\n\0"
+AccessoriesSix:							# Label for creating a buffer for sixth accessory in vending machine
+	.ascii "6.SwimSuit                 (420 pies)\n\0"
+AccessoriesSeven:						# Label for creating a buffer for seventh accessory in vending machine
+	.ascii "7.Fishing Poles            (480 pies)\n\0"
+AccessoriesEight:						# Label for creating a buffer for eighth accessory in vending machine
+	.ascii "8.Swim Goggles             (125 pies)\n\0"
+AccessoriesNine:						# Label for creating a buffer for ninth accessory in vending machine
+	.ascii "9.Portable Chair           (500 pies)\n\0"
+YourSelection:							# Label for creating a buffer for taking user input for selection of item from vending machine	
+	.ascii "Your Selection:\0"
+WrongInput:								# Label for creating a buffer if user entered wrong input value while selecting item
+	.ascii "You Entered Wrong Value!\n\0"
+ChangeReceivedOne:						# Label for creating a buffer for change received
+	.ascii "You have \0"
+ChangeReceivedTwo:						# Label for creating a buffer for change received with total pies in return
+	.ascii " pie(s) in change\n\0"
+LessCoins:								# Label for creating a buffer for informing user that less coins are inserted for particular item	
+	.ascii "You don't have enough coins! Please receive change and enter appropriate amount to buy this item!\n\0"
+ZeroPies:								# Label for creating buffer for informing user that user entered zero pies and no stuff is available for that amount
+	.ascii "No stuff available with that amount!\n\0"
+
+
+
+.text									# Text section	stores all logic to evaluate program
+.global _start							# global stats assemble that label following global can used outside file
+
+_start:									# subroutine call 
+	
+	mov $NewLine, %eax					
+	call PrintCString					# subroutine call to csc35.o and prints string of the buffer moved to eax i.e NewLine
+
+	mov $EnterCoins, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled Enter coins in data section
+
+	mov $NewLine, %eax					
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer to move to new line defined in data section
+
+	mov $Rupee, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled rupee in data section
+
+	call ScanUInt						# subroutine call to csc35.o and takes user input for number of rupee coins
+	mov $192, %ebx				
+	mul %ebx							# converts rupee to pie
+
+	mov %eax, %ecx						# moves total pie to ecx register
+	
+	mov $Anna, %eax	
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled anna in data section
+	
+	call ScanUInt						# subroutine call to csc35.o and takes user input for number of anna coins
+	mov $12, %ebx
+	mul %ebx							# converts anna to pie
+	
+	ADD %eax, %ecx						# adds total pie , i.e rupee in pie and anna in pie
+	
+	mov $Paisa, %eax				
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled paisa in data section 
+
+	call ScanUInt						# subroutine call to csc35.o and takes user input for number of paisa coins 
+	mov $3, %ebx
+	mul %ebx							# converts paisa to pie
+
+	ADD %eax, %ecx						# adds total pie, i.e rupee in pie , anna in pie and paisa in pie
+
+	mov $Pie, %eax					
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled pie in data section
+
+	call ScanUInt						# subroutine call to csc35.o and takes user input for number of pie coins
+	
+	ADD %eax, %ecx						# adds total pie, rupee in pie, anna in pie, paisa in pie and pies entered by user
+	
+	mov $NewLine, %eax
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section
+		
+	mov $TotalPieOne, %eax					
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled total pie in data section
+
+	mov %ecx, %eax
+	call PrintUInt						# prints total amount user entered in pie
+
+	mov $TotalPieTwo, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled total pie in data section
+
+	cmp $0, %ecx
+	je ZeroCoinsEntered
+
+	mov $NewLine, %eax
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section
+
+	mov $VendingMachineName, %eax				
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled vending machine name in data section
+
+	mov $NewLine, %eax
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section
+
+	mov $AccessoriesOne, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled AccessoriesOne in data section
+
+	mov $AccessoriesTwo, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled AccessoriesTwo in data section
+
+	mov $AccessoriesThree, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled AccessoriesThree in data section
+
+	mov $AccessoriesFour, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled AccessoriesFour in data section
+
+	mov $AccessoriesFive, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled AccessoriesFive in data section
+
+	mov $AccessoriesSix, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled AccessoriesSix in data section
+
+	mov $AccessoriesSeven, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled AccessoriesSeven in data section
+
+	mov $AccessoriesEight, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled AccessoriesEight in data section
+
+	mov $AccessoriesNine, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled AccessoriesNine in data section
+
+	mov $NewLine, %eax			
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section
+
+	mov $YourSelection, %eax
+	call PrintCString					# subroutine call to ccsc35.o and moves string of buffer labeled YourSelection in data section
+
+	call ScanUInt						# subroutine call to csc35.o and takes user input for selected item user buy's from vending machine
+	cmp $1, %eax						# compares if user selected first item	
+	je Accessories_One					# jumps to label Accessories_One if user selected first item
+
+	cmp $2, %eax						# compares if user selected second item
+	je Accessories_Two					# jumps to label Accessories_Two if user selected second item	
+
+	cmp $3, %eax						# compares if user selected third item
+	je Accessories_Three					# jumps to label Accessories_Three if user selected third item
+	
+	cmp $4, %eax						# compares if user selected fourth item	
+	je Accessories_Four					# jumps to label Accessories_Four if user selected fourth item
+	
+	cmp $5, %eax						# compares if user selected fifth item
+	je Accessories_Five					# jumps to label Accessories_Five if user selected fifth item
+
+	cmp $6, %eax						# compares if user selected sixth item
+	je Accessories_Six					# jumps to label Accessories_Six if user selected Sixth item
+	
+	cmp $7, %eax						# compares if user selected seventh item
+	je Accessories_Seven					# jumps to label Accessories_Seven if user selected seventh item
+
+	cmp $8, %eax						# compares if user selected eighth item
+	je Accessories_Eight					# jumps to label Accessories_Eight if user selected eighth item
+
+	cmp $9, %eax						# compares if user selected ninth item
+	je Accessories_Nine					# jumps to label Accessories_Nine if user selected ninth item
+	
+	jmp defaultCase						# jumps to default case if user entered any value except 1 to 9
+
+Accessories_One:
+
+	mov $35, %ebx						# price to buy first item in vending machine moved to ebx register
+	
+	cmp %ebx, %ecx						# compares values in ebx and ecx
+	jl NotEnoughCoins					# jumps to label NotEnoughCoins if user don't have enough coins to purchase this item
+	
+	sub %ebx, %ecx						# subtract ebx from ecx (user have enough coins to buy, ecx holds total amount user have in pie)
+
+	jmp MinimumCoins					# jumps to label MinimumCoins which evaluates change received by user after buying item
+
+Accessories_Two:
+
+	mov $45, %ebx						# price to buy second item in vending machine moved to ebx register
+
+	cmp %ebx, %ecx						# compares values in ebx and ecx
+	jl NotEnoughCoins					# jumps to label NotEnoughCoins if user don't have enough coins to purchase this item	
+
+	sub %ebx, %ecx						# subtract ebx from ecx (user have enough coins to buy, ecx hold total amount user have in pie)
+
+	jmp MinimumCoins					# jumps to label MinimumCoins which evaluates change received by user after buying item
+
+Accessories_Three:
+	
+	mov $40, %ebx						# price to buy third item in vending machine moved to ebx register
+	
+	cmp %ebx, %ecx						# compares values in ebx and ecx
+	jl NotEnoughCoins					# jumps to label NotEnoughCoins if user don't have enough coins to purchase this item	
+
+	sub %ebx, %ecx						# subtract ebx from ecx (user have enough coins to buy, ecx hold total amount user have in pie)
+
+	jmp MinimumCoins					# jumps to label MinimumCoins which evaluates change received by user after buying item
+
+Accessories_Four:
+
+	mov $50, %ebx						# price to buy fourth item in vending machine moved to ebx register
+
+	cmp %ebx, %ecx						# compares values in ebx and ecx
+	jl NotEnoughCoins					# jumps to label NotEnoughCoins if user don't have enough coins to purchase this item		
+
+	sub %ebx, %ecx						# subtract ebx from ecx (user have enough coins to buy, ecx hold total amount user have in pie)
+
+	jmp MinimumCoins					# jumps to label MinimumCoins which evaluates change received by user after buying item
+
+Accessories_Five:
+
+	mov $90, %ebx						# price to buy fifth item in vending machine moved to ebx register
+
+	cmp %ebx, %ecx						# compares values in ebx and ecx
+	jl NotEnoughCoins					# jumps to label NotEnoughCoins if user don't have enough coins to purchase this item	
+
+	sub %ebx, %ecx						# subtract ebx from ecx (user have enough coins to buy, ecx hold total amount user have in pie)
+
+	jmp MinimumCoins					# jumps to label MinimumCoins which evaluates change received by user after buying item
+
+Accessories_Six:
+
+	mov $420, %ebx						# price to buy sixth item in vending machine moved to ebx register
+
+	cmp %ebx, %ecx						# compares values in ebx and ecx
+	jl NotEnoughCoins					# jumps to label NotEnoughCoins if user don't have enough coins to purchase this item	
+
+	sub %ebx, %ecx						# subtract ebx from ecx (user have enough coins to buy, ecx hold total amount user have in pie)
+
+	jmp MinimumCoins					# jumps to label MinimumCoins which evaluates change received by user after buying item
+
+Accessories_Seven:	
+
+	mov $480, %ebx						# price to buy seventh item in vending machine moved to ebx register
+
+	cmp %ebx, %ecx						# compares values in ebx and ecx
+	jl NotEnoughCoins					# jumps to label NotEnoughCoins if user don't have enough coins to purchase this item		
+
+	sub %ebx, %ecx						# subtract ebx from ecx (user have enough coins to buy, ecx hold total amount user have in pie)
+
+	jmp MinimumCoins					# jumps to label MinimumCoins which evaluates change received by user after buying item
+
+Accessories_Eight:
+
+	mov $125, %ebx						# price to buy eighth item in vending machine moved to ebx register
+
+	cmp %ebx, %ecx						# compares values in ebx and ecx
+	jl NotEnoughCoins					# jumps to label NotEnoughCoins if user don't have enough coins to purchase this item	
+
+	sub %ebx, %ecx						# subtract ebx from ecx (user have enough coins to buy, ecx hold total amount user have in pie)
+	
+	jmp MinimumCoins					# jumps to label MinimumCoins which evaluates change received by user after buying item
+
+Accessories_Nine:
+
+	mov $500, %ebx						# price to buy ninth item in vending machine moved to ebx register
+
+	cmp %ebx, %ecx						# compares values in ebx and ecx
+	jl NotEnoughCoins					# jumps to label NotEnoughCoins if user don't have enough coins to purchase this item	
+
+	sub %ebx, %ecx						# subtract ebx from ecx (user have enough coins to buy, ecx hold total amount user have in pie)
+	
+	jmp MinimumCoins					# jumps to label MinimumCoins which evaluates change received by user after buying item
+
+defaultCase:
+
+	mov $WrongInput, %eax					
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled WrongInput in data section
+	jmp MinimumCoins					# jumps to label MinimumCoins , when user inputs wrong selection for buying item  
+
+ZeroCoinsEntered:
+
+	mov $ZeroPies, %eax		
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled ZeroPies in data section
+	jmp End
+
+NotEnoughCoins:
+
+	mov $LessCoins, %eax				
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled LessCoins in data section
+
+MinimumCoins:
+	
+	mov $NewLine, %eax
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section		
+
+	mov $ChangeReceivedOne, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled ChangeReceivedOne in data section
+
+	mov %ecx, %eax
+	call PrintUInt						# subroutine call to csc35.o and prints total change amount received by user in pie
+
+	mov $ChangeReceivedTwo, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled ChangeReceivedOne in data section
+
+	mov $NewLine, %eax
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section		 
+	
+	mov $Rupee, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled Rupee in data section
+	
+	mov %ecx, %eax						
+	mov $192, %ebx						# 192 pies = 1 rupee
+	DIV %ebx							# divides change in pie with 192 and finds max rupee coins that can be given in change
+	mov %edx,%esi						# stores reminder in esi register , reminder is total pie(s) left after getting maximum rupee coins	
+	mov $0, %edx						# moves value 0 to edx register so when next time value is divide, appropriate result is stored in edx
+	
+	call PrintUInt						# subroutine call to csc35.o and prints maximum rupee coins that can be received by user in change
+	
+	mov $NewLine, %eax					
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section		
+
+	mov $Anna, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled Anna in data section
+	
+	mov  %esi, %eax						# moves total pie(s) left after evaluating maximum rupee coins in change and move it to eax
+	mov $12,%ebx						# 12 pies = 1 anna
+	DIV %ebx							# divides change in pie with 12 and finds max anna coins that can be given in change
+	mov %edx, %esi						# stores reminder in esiregister, reminder is total pie(s) left after getting maximum anna coins
+	mov $0, %edx						# moves value 0 to edx register so when next time value is divide, appropriate result is stored in edx
+
+	call PrintUInt						# subroutine call to csc35.o and prints maximum anna coins that can be received by user in change
+
+	mov $NewLine, %eax
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section		
+
+	mov $Paisa, %eax
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled Anna in data section
+
+	mov  %esi, %eax						# moves total pie(s) left after evaluating maximum rupee coins in change and move it to eax
+	mov $3, %ebx						# 3 pies = 1 paisa
+	DIV %ebx							# divides change in pie with 3 and finds max paisa coins that can be given in change
+	mov %edx, %esi						# stores reminder in esiregister, reminder is total pie(s) left after getting maximum anna coins
+	mov $0, %edx						# moves value 0 to edx register so when next time value is divide, appropriate result is stored in edx
+	
+	call PrintUInt						# subroutine call to csc35.o and prints maximum rupee coins that can be received by user in change
+
+	mov $NewLine, %eax
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section		
+
+	mov $Pie, %eax		
+	call PrintCString					# subroutine call to csc35.o and prints string of buffer labeled Pie in data section
+	
+	mov %esi,%eax
+	call PrintUInt						# total pie left in esi are moved to eax and subroutine call to print total pie received in change
+
+	mov $NewLine, %eax
+	call PrintCString					# subroutine call to csc35.o and moves to new line , labeled is defined in data section		
+
+End:
+	call EndProgram						# subroutine call to csc35.o , to end program.

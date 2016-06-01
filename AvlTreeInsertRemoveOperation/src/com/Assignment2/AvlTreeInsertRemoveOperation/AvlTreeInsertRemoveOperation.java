@@ -3,6 +3,8 @@ package com.Assignment2.AvlTreeInsertRemoveOperation;
 import java.util.Scanner;
 
 /**
+ * @author Bibodi Jay
+ * 
  * This class define attributes of tree necessary to
  * perform avl tree operations.
  */
