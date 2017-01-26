@@ -1,0 +1,256 @@
+Script started on Thu 22 Sep 2016 11:03:48 PM PDT
+[bibodij@atoz:21]> pwd
+/gaia/class/student/bibodij/csc60
+[bibodij@atoz:22]> mkdir xyz
+[bibodij@atoz:23]> cd xyz
+[bibodij@atoz:24]> pwd
+/gaia/class/student/bibodij/csc60/xyz
+[bibodij@atoz:25]> cd ..
+[bibodij@atoz:26]> pwd
+/gaia/class/student/bibodij/csc60
+[bibodij@atoz:27]> ls>file1
+[bibodij@atoz:28]> cat file1
+a.out*
+BibodiJay_lab1.txt
+BibodiJay_lab2.txt
+file1
+lab1.c
+xyz/
+[bibodij@atoz:29]> less file1
+[?1049h[?1h=a.out*
+BibodiJay_lab1.txt
+BibodiJay_lab2.txt
+file1
+lab1.c
+xyz/
+[7mfile1 (END) [27m[K[K[?1l>[?1049l[bibodij@atoz:30]> file*
+file1: Permission denied.
+[bibodij@atoz:31]> file *
+a.out:              ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.18, not stripped
+BibodiJay_lab1.txt: ASCII C program text, with CRLF, CR, LF line terminators, with escape sequences, with overstriking
+BibodiJay_lab2.txt: empty
+file1:              ASCII text
+lab1.c:             ASCII C program text
+xyz:                setgid directory
+[bibodij@atoz:32]> wc file1
+ 6  6 63 file1
+[bibodij@atoz:33]> wc *
+      7      63    4758 a.out
+     30      87     625 BibodiJay_lab1.txt
+      0       0       0 BibodiJay_lab2.txt
+      6       6      63 file1
+     16      43     308 lab1.c
+wc: xyz: Is a directory
+      0       0       0 xyz
+     59     199    5754 total
+[bibodij@atoz:34]> grep lab file1
+BibodiJay_lab1.txt
+BibodiJay_lab2.txt
+lab1.c
+[bibodij@atoz:35]> cp file1 file2
+[bibodij@atoz:36]> ls
+a.out*	BibodiJay_lab1.txt  BibodiJay_lab2.txt	file1  file2  lab1.c  xyz/
+[bibodij@atoz:37]> cd xyz
+[bibodij@atoz:38]> cp ../file1 .
+[bibodij@atoz:39]> ls
+file1
+[bibodij@atoz:40]> mv file1 file2
+[bibodij@atoz:41]> ls
+file2
+[bibodij@atoz:42]> mv ../file1 .
+[bibodij@atoz:43]> ls
+file1  file2
+[bibodij@atoz:44]> cmp file1 file2
+[bibodij@atoz:45]> ls>xyzlist
+[bibodij@atoz:46]> cmp file1 xyzlist
+file1 xyzlist differ: byte 1, line 1
+[bibodij@atoz:47]> diff file1 xyzlist
+1,3d0
+< a.out*
+< BibodiJay_lab1.txt
+< BibodiJay_lab2.txt
+5,6c2,3
+< lab1.c
+< xyz/
+---
+> file2
+> xyzlist
+[bibodij@atoz:48]> rm file1
+[bibodij@atoz:49]> ls
+file2  xyzlist
+[bibodij@atoz:50]> w
+ 23:10:33 up 1 day,  8:14,  2 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+bibodij  pts/0    athena.ecs.csus. 23:02    0.00s  0.14s  0.01s script BibodiJa
+bibodij  pts/1    -                23:03    0.00s  0.12s  0.01s w
+[bibodij@atoz:51]> who
+bibodij  pts/0        2016-09-22 23:02 (athena.ecs.csus.edu)
+bibodij  pts/1        2016-09-22 23:03
+[bibodij@atoz:52]> ps -u
+Warning: bad syntax, perhaps a bogus '-'? See /usr/share/doc/procps-3.2.8/FAQ
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+bibodij   5590  0.0  0.0 116748  2020 pts/0    Ss   23:02   0:00 -csh
+bibodij   5651  0.0  0.0 107128   832 pts/0    S+   23:03   0:00 script BibodiJa
+bibodij   5653  0.0  0.0 107640   408 pts/0    S+   23:03   0:00 script BibodiJa
+bibodij   5654  0.0  0.0 110376  1792 pts/1    Ss   23:03   0:00 -sh -i
+bibodij   5830  1.0  0.0 114484  1288 pts/1    R+   23:10   0:00 ps -u
+[bibodij@atoz:53]> ps -l
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  7062  5654  5653  0  80   0 - 27594 rt_sig pts/1    00:00:00 csh
+0 R  7062  5833  5654  0  80   0 - 27034 -      pts/1    00:00:00 ps
+[bibodij@atoz:54]> !!
+ps -l
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  7062  5654  5653  0  80   0 - 27594 rt_sig pts/1    00:00:00 csh
+0 R  7062  5835  5654  1  80   0 - 27036 -      pts/1    00:00:00 ps
+[bibodij@atoz:55]> history
+     1	13:12	cd csc60
+     2	13:32	vim lab1.c
+     3	13:34	gcc lab1.c
+     4	13:34	a.out
+     5	13:45	script BibodiJay_lab1.txt
+     6	23:29	%OS_Prompt ssh -l bibodij cscoracle
+     7	23:29	%OS_Prompt ssh -l
+     8	23:32	%OS_Prompt ssh -l cs20414 cscoracle
+     9	23:35	%OS_Prompt
+    10	23:35	%OS_Prompt ssh
+    11	23:36	ssh -l bibodij cscoracle
+    12	23:38	clear
+    13	23:39	ssh -l cs20414 cscoracle
+    14	15:58	echo $ORACLE_HOME
+    16	15:59	sql
+    17	16:07	sqlplus
+    18	16:07	ssh cscoracle
+    19	22:44	ssh atoz
+    20	23:01	exit
+    22	23:04	mkdir xyz
+    25	23:04	cd ..
+    26	23:04	pwd
+    27	23:04	ls > file1
+    28	23:05	cat file1
+    29	23:05	less file1
+    30	23:05	file*
+    31	23:05	file *
+    32	23:05	wc file1
+    33	23:05	wc *
+    34	23:06	grep lab file1
+    35	23:06	cp file1 file2
+    37	23:06	cd xyz
+    38	23:07	cp ../file1 .
+    40	23:08	mv file1 file2
+    42	23:09	mv ../file1 .
+    44	23:09	cmp file1 file2
+    45	23:09	ls > xyzlist
+    46	23:09	cmp file1 xyzlist
+    47	23:10	diff file1 xyzlist
+    48	23:10	rm file1
+    49	23:10	ls
+    50	23:10	w
+    51	23:10	who
+    52	23:10	ps -u
+    54	23:11	ps -l
+    55	23:11	history
+[bibodij@atoz:56]> !3
+gcc lab1.c
+gcc: lab1.c: No such file or directory
+gcc: no input files
+[bibodij@atoz:57]> cd ..
+[bibodij@atoz:58]> head -20 lab1.c
+/*------------*/
+/* Bibodi Jay Nikhil */
+/* Section 3 */
+/* Lab 1 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	printf("\nLab 1 \n\n");
+	printf("Hi, Bibodi Jay Nikhil\n\n");
+	printf("The best preparation for tomorrow is doing your best today. \n\n");
+	return EXIT_SUCCESS;
+}
+/*------------*/
+[bibodij@atoz:59]> tail -20 lab1.c
+/*------------*/
+/* Bibodi Jay Nikhil */
+/* Section 3 */
+/* Lab 1 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	printf("\nLab 1 \n\n");
+	printf("Hi, Bibodi Jay Nikhil\n\n");
+	printf("The best preparation for tomorrow is doing your best today. \n\n");
+	return EXIT_SUCCESS;
+}
+/*------------*/
+[bibodij@atoz:60]> ls -al | less
+[?1049h[?1h=total 32
+drwx--S---  3 bibodij stdcsc 4096 Sep 22 23:09 ./
+drwx--s--x 11 bibodij stdcsc 4096 Sep 22 22:44 ../
+-rwx------  1 bibodij stdcsc 4758 Sep 16 13:34 a.out*
+-rw-------  1 bibodij stdcsc  625 Sep 16 13:46 BibodiJay_lab1.txt
+-rw-------  1 bibodij stdcsc    0 Sep 22 23:03 BibodiJay_lab2.txt
+-rw-------  1 bibodij stdcsc   63 Sep 22 23:06 file2
+-rw-------  1 bibodij stdcsc  308 Sep 16 13:34 lab1.c
+drwx--S---  2 bibodij stdcsc 4096 Sep 22 23:10 xyz/
+[7m(END) [27m[K[K[?1l>[?1049l[bibodij@atoz:61]> history
+     1	13:12	cd csc60
+     2	13:32	vim lab1.c
+     4	13:34	a.out
+     5	13:45	script BibodiJay_lab1.txt
+     6	23:29	%OS_Prompt ssh -l bibodij cscoracle
+     7	23:29	%OS_Prompt ssh -l
+     8	23:32	%OS_Prompt ssh -l cs20414 cscoracle
+     9	23:35	%OS_Prompt
+    10	23:35	%OS_Prompt ssh
+    11	23:36	ssh -l bibodij cscoracle
+    12	23:38	clear
+    13	23:39	ssh -l cs20414 cscoracle
+    14	15:58	echo $ORACLE_HOME
+    16	15:59	sql
+    17	16:07	sqlplus
+    18	16:07	ssh cscoracle
+    19	22:44	ssh atoz
+    20	23:01	exit
+    22	23:04	mkdir xyz
+    26	23:04	pwd
+    27	23:04	ls > file1
+    28	23:05	cat file1
+    29	23:05	less file1
+    30	23:05	file*
+    31	23:05	file *
+    32	23:05	wc file1
+    33	23:05	wc *
+    34	23:06	grep lab file1
+    35	23:06	cp file1 file2
+    37	23:06	cd xyz
+    38	23:07	cp ../file1 .
+    40	23:08	mv file1 file2
+    42	23:09	mv ../file1 .
+    44	23:09	cmp file1 file2
+    45	23:09	ls > xyzlist
+    46	23:09	cmp file1 xyzlist
+    47	23:10	diff file1 xyzlist
+    48	23:10	rm file1
+    49	23:10	ls
+    50	23:10	w
+    51	23:10	who
+    52	23:10	ps -u
+    54	23:11	ps -l
+    56	23:11	gcc lab1.c
+    57	23:11	cd ..
+    58	23:12	head -20 lab1.c
+    59	23:12	tail -20 lab1.c
+    60	23:12	ls -al | less
+    61	23:13	history
+[bibodij@atoz:62]> echo $SHELL
+/bin/csh
+[bibodij@atoz:63]> ^Dexit
+
+Script done on Thu 22 Sep 2016 11:14:52 PM PDT

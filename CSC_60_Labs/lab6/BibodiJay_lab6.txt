@@ -1,0 +1,40 @@
+Script started on Wed 16 Nov 2016 10:29:11 PM PST
+[bibodij@atoz:21]> a.out
+
+csc60mshell> 
+Argc = 0 
+
+csc60mshell>  
+Argc = 0 
+
+csc60mshell> pwd
+Argc = 1 
+Argv[0] = pwd 
+Current Working Directory: /gaia/class/student/bibodij/csc60/lab6 
+
+csc60mshell> cd ..
+Argc = 2 
+Argv[0] = cd 
+Argv[1] = .. 
+
+csc60mshell> pwd
+Argc = 1 
+Argv[0] = pwd 
+Current Working Directory: /gaia/class/student/bibodij/csc60 
+
+csc60mshell> cd
+Argc = 1 
+Argv[0] = cd 
+
+csc60mshell> pwd
+Argc = 1 
+Argv[0] = pwd 
+Current Working Directory: /gaia/class/student/bibodij 
+
+csc60mshell> exit
+Argc = 1 
+Argv[0] = exit 
+[bibodij@atoz:22]> exit
+exit
+
+Script done on Wed 16 Nov 2016 10:30:06 PM PST

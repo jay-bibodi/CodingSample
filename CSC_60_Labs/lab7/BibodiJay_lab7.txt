@@ -1,0 +1,170 @@
+Script started on Mon 05 Dec 2016 10:42:15 PM PST
+[bibodij@atoz:21]> gcc lab7.c
+[bibodij@atoz:22]> a.out
+
+csc60mshell> 
+Argc = 0 
+
+csc60mshell>  
+Argc = 0 
+
+csc60mshell> pwd
+Argc = 1 
+Argv[0] = pwd 
+Current Working Directory: /gaia/class/student/bibodij/csc60/lab7 
+
+csc60mshell> cd ..
+Argc = 2 
+Argv[0] = cd 
+Argv[1] = .. 
+
+csc60mshell> pwd
+Argc = 1 
+Argv[0] = pwd 
+Current Working Directory: /gaia/class/student/bibodij/csc60 
+
+csc60mshell> cd
+Argc = 1 
+Argv[0] = cd 
+
+csc60mshell> pwd
+Argc = 1 
+Argv[0] = pwd 
+Current Working Directory: /gaia/class/student/bibodij 
+
+csc60mshell> cd csc60/lab7
+Argc = 2 
+Argv[0] = cd 
+Argv[1] = csc60/lab7 
+
+csc60mshell> pwd
+Argc = 1 
+Argv[0] = pwd 
+Current Working Directory: /gaia/class/student/bibodij/csc60/lab7 
+
+csc60mshell> ls
+Argc = 1 
+Argv[0] = ls 
+a.out		    hi.txt  ls.out  redir.c	waitpid.c
+BibodiJay_lab7.txt  lab7.c  redir   typescript	x.lis
+Child returned status: 0
+
+csc60mshell> ls > ls.out
+Argc = 3 
+Argv[0] = ls 
+Argv[1] = > 
+Argv[2] = ls.out 
+Child returned status: 0
+
+csc60mshell> ls > ls1.out > ls2.out
+Argc = 5 
+Argv[0] = ls 
+Argv[1] = > 
+Argv[2] = ls1.out 
+Argv[3] = > 
+Argv[4] = ls2.out 
+Trying to open more than one file per redirection!
+Child returned status: 256
+
+csc60mshell> wc < ls.out
+Argc = 3 
+Argv[0] = wc 
+Argv[1] = < 
+Argv[2] = ls.out 
+10 10 87
+Child returned status: 0
+
+csc60mshell> wc < ls.out < redir.c
+Argc = 5 
+Argv[0] = wc 
+Argv[1] = < 
+Argv[2] = ls.out 
+Argv[3] = < 
+Argv[4] = redir.c 
+Trying to open more than one file per redirection!
+Child returned status: 256
+
+csc60mshell> cat redir.c
+Argc = 2 
+Argv[0] = cat 
+Argv[1] = redir.c 
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main (void)
+{
+    int fileId;
+    fileId = creat( "x.lis",0640 );
+    if( fileId < 0 )  
+    {  
+	printf("error creating x.lis\n" ); 
+	exit (EXIT_FAILURE);     
+    }
+    dup2( fileId, 1);      /* copy fileID to stdout */
+    close( fileId );     		
+    execl( "/bin/ls", "ls", 0 );
+    exit (EXIT_SUCCESS);
+}
+Child returned status: 0
+
+csc60mshell> cd /usr/bin
+Argc = 2 
+Argv[0] = cd 
+Argv[1] = /usr/bin 
+
+csc60mshell> cd
+Argc = 1 
+Argv[0] = cd 
+
+csc60mshell> /usr/bin/ps
+Argc = 1 
+Argv[0] = /usr/bin/ps 
+Shell Program: No such file or directory
+Child returned status: 256
+
+csc60mshell> pwd
+Argc = 1 
+Argv[0] = pwd 
+Current Working Directory: /gaia/class/student/bibodij 
+
+csc60mshell> cd csc60/lab7
+Argc = 2 
+Argv[0] = cd 
+Argv[1] = csc60/lab7 
+
+csc60mshell> pwd
+Argc = 1 
+Argv[0] = pwd 
+Current Working Directory: /gaia/class/student/bibodij/csc60/lab7 
+
+csc60mshell> wc hi.txt
+Argc = 2 
+Argv[0] = wc 
+Argv[1] = hi.txt 
+0 1 2 hi.txt
+Child returned status: 0
+
+csc60mshell> gcc -o redir redir.c -g
+Argc = 5 
+Argv[0] = gcc 
+Argv[1] = -o 
+Argv[2] = redir 
+Argv[3] = redir.c 
+Argv[4] = -g 
+Child returned status: 0
+
+csc60mshell> ls
+Argc = 1 
+Argv[0] = ls 
+a.out		    hi.txt  ls.out  redir.c	waitpid.c
+BibodiJay_lab7.txt  lab7.c  redir   typescript	x.lis
+Child returned status: 0
+
+csc60mshell> exit
+Argc = 1 
+Argv[0] = exit 
+[bibodij@atoz:23]> exit
+exit
+
+Script done on Mon 05 Dec 2016 10:46:53 PM PST

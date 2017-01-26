@@ -2,6 +2,32 @@ package com.MaxSubSequence.DivideAndConquer;
 
 import java.util.Scanner;
 
+// N^2 Solution.
+/*int maxSubSequence(int a[])
+{
+	int maxSum = 0;
+	for(int i = 0;i<a.length;i++)
+	{
+		for(int j=0;j<a.length;j++)
+		{
+			int sum = 0;
+			for(int k = i;k<=j;k++)
+			{
+				sum +=a[i];
+			}
+			
+			if(sum>maxSum)
+			{
+				maxSum = sum;
+			}
+		}
+	}
+	return maxSum;
+}*/
+
+
+
+
 /**
  * @author Bibodi Jay
  * 

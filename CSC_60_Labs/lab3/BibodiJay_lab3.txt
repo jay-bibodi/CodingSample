@@ -1,0 +1,77 @@
+Script started on Mon 03 Oct 2016 07:07:21 PM PDT
+[bibodij@athena:21]> cat lab3.c
+/*-------------------------------------------------*/
+/* Bibodi Jay Nikhil                               */
+/* Lab 3                                           */
+/* Figure the perimeter and area of a polygon      */
+/* surrounded by a circle                          */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define INPUT_FILE_NAME  ("lab3.dat")
+#define OUTPUT_FILE_NAME ("lab3.txt")
+
+int main(void)
+{
+	double radius,sides,perimeter,area;
+
+	FILE *FILEIN;
+	FILE *answer_file;
+	
+	FILEIN = fopen(INPUT_FILE_NAME,"r");
+	if(FILEIN != NULL)
+	{
+		answer_file = fopen(OUTPUT_FILE_NAME,"w");
+		if(answer_file == NULL)
+		{
+			printf("Error on opening the output file\n");
+			return EXIT_FAILURE;	
+		}
+
+		/* All these fprintf statements use the file pointer                          	
+		 of answer_file.  Feel free to use your own variable
+        	 or the one I used.  You may delete this comment. */
+                                                                                                 
+            	fprintf(answer_file, "\nBibodi Jay Nikhil.  Lab 3.\n\n");
+                fprintf(answer_file, "            Number      Perimeter      Area Of  \n");
+                fprintf(answer_file, " Radius    Of Sides    Of Polygon      Polygon  \n");
+                fprintf(answer_file, "--------   --------   ------------   ----------- \n");	
+		while((fscanf(FILEIN,"%lf %lf",&radius,&sides))==2)
+		{
+			perimeter = 2 * sides * radius * (sin(M_PI/sides));
+
+			area = 0.5 * sides * radius * radius * (sin((2*M_PI)/sides));
+						
+               		fprintf(answer_file," %5.2f       %5.2f     %10.4f    %10.4f \n",radius,sides,perimeter,area);	
+		}
+
+		fclose(FILEIN);
+		fclose(answer_file);				
+	}
+	else
+	{
+		printf("Error on opening the data file\n");
+		return EXIT_FAILURE;
+	}
+}
+/*------------------------------------------------------------------*/
+[bibodij@athena:22]> a.out
+[bibodij@athena:23]> cat lab3.txt
+
+Bibodi Jay Nikhil.  Lab 3.
+
+            Number      Perimeter      Area Of  
+ Radius    Of Sides    Of Polygon      Polygon  
+--------   --------   ------------   ----------- 
+  4.20        6.00        25.2000       45.8301 
+  3.10        4.00        17.5362       19.2200 
+ 10.50       10.00        64.8936      324.0166 
+ 23.00        8.00       140.8275     1496.2379 
+  9.70        4.00        54.8715      188.1800 
+ 15.90        5.00        93.4579      601.0915 
+[bibodij@athena:24]> exit
+exit
+
+Script done on Mon 03 Oct 2016 07:08:02 PM PDT
