@@ -1,0 +1,20 @@
+module cgu(p,g,ci,c);
+input [1:0] p;
+input [1:0] g;
+input ci;
+output [1:0] c;
+
+wire nor1,nor2,nor3,nor4,nor5;
+
+nor (nor4,g[0],ci);
+nor (nor5,g[0],p[0]);
+
+nor (c[0],nor4,nor5);
+
+nor (nor1,g[1],g[0],ci);
+nor (nor2,g[1],g[0],p[0]);
+nor (nor3,g[1],p[1]);
+
+nor (c[1],nor1,nor2,nor3);
+
+endmodule

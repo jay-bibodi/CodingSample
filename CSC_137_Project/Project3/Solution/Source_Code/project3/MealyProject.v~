@@ -1,0 +1,61 @@
+module MealyProject
+(
+	input clock,reset,x,
+	output reg z
+);
+
+//assign binary encoded codes to the states A through D
+parameter	A = 3'b000,
+		B = 3'b001,
+		C = 3'b010,
+		D = 3'b011;
+
+reg[2:0] current_state, next_state;
+
+//Section 1: Next State Generator (NSG)
+always@(*)
+begin
+	casex (current_state)  // ignore unknown and high impedence (Z) inputs
+	
+	A: if(x == 1)
+		next_state = B;
+	   else
+		next_state = A;
+	B: if(x == 1)
+		next_state = B;
+	   else
+		next_state = C;
+	C: if(x == 1)
+		next_state = B;
+	   else
+		next_state = D;
+	D: if(x == 1)
+		next_state = B;
+	   else
+		next_state = A;
+	default: 
+		next_state = 3'bxxx;
+	endcase
+end
+
+//Section 2: Output Generator (OG)
+always@(*) //
+begin
+	if((x == 1) && (current_state == D) && (next_state == B )) 
+		z = 1'b1;
+	else
+		z = 1'b0;
+end
+
+//Section 3: FlipFlop
+always@(posedge clock,posedge reset)
+begin
+	if(reset ==1)
+		current_state <= A;
+	else 
+		current_state <= next_state;
+end
+
+endmodule
+	 		
+	 	

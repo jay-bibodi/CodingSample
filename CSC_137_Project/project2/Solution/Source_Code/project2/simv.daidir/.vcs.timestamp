@@ -1,0 +1,104 @@
+0 
+19
++v2k
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/titan/software/synopsys14/vcs/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mldflags=-m32
+-Mobjects= /titan/software/synopsys14/vcs/linux/lib/libvirsim.so /titan/software/synopsys14/vcs/linux/lib/librterrorinf.so /titan/software/synopsys14/vcs/linux/lib/libsnpsmalloc.so
+-Mout=simv
+-Msaverestoreobj=/titan/software/synopsys14/vcs/linux/lib/vcs_save_restore_new.o
+-Msyslibs=/titan/software/synopsys14/vcs/linux/lib/ctype-stubs_32.a -ldl
+-Mvcsaceobjs=
+-gen_obj
+-picarchive
+/titan/software/synopsys14/vcs/linux/bin/vcs1
+testBench.v
+66
+sysc_uni_pwd=/gaia/class/student/bibodij/csc137/project2
+X_COLORMAP_DEFAULT=0
+X_COLORMAP_BASE=128
+XDG_SESSION_COOKIE=67cafe13d8064b59a3c2234500000009-1476862101.938445-545392493
+XDBGJTAGWAITTIME=20
+XAUTHORITY=/var/run/gdm/auth-for-bibodij-ddiZDh/database
+XAPPLRESDIR=/usr/pkg/X11R5/lib/app-defaults
+WWW_HOME=http://www.csus.edu
+VMR_MODE_FLAG=32
+VENDOR=intel
+VCS_MX_HOME_INTERNAL=1
+VCS_LICENSE_EXPIRE_WARNING=1
+VCS_HOME=/titan/software/synopsys14/vcs
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH_OVERRIDE=linux
+VCS_ARCH=linux
+VCS_AMD_PURE32=1
+USERNAME=bibodij
+UNAME=/bin/uname
+TOOL_HOME=/titan/software/synopsys14/vcs/linux
+SYNOPSYS_SYN=/titan/software/synopsys14/syn/linux/syn
+SYNOPSYS_SIM=/titan/software/synopsys14/vcs
+SYNOPSYS=/titan/software/synopsys14/syn/linux
+STATES_LICENSE_PATH=/usr/pkg/states/bin
+SSH_AUTH_SOCK=/tmp/keyring-VkxNsG/socket.ssh
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SNPSLMD_LICENSE_FILE=7241@titan.ecs.csus.edu:/titan/software/synopsys14/vcs/flexlm//license.dat
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/15485,unix/unix:/tmp/.ICE-unix/15485
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+REMOTEHOST=127.0.0.1
+QTLIB=/usr/lib/qt-3.3/lib
+QTINC=/usr/lib/qt-3.3/include
+QTDIR=/usr/lib/qt-3.3
+P3_ENABLE_NFS_DB_ACCESS=yes
+OVA_UUM=0
+OSTYPE=linux
+ORBIT_SOCKETDIR=/tmp/orbit-bibodij
+OPENWINHOME=/usr/openwin
+MSC_LICENSE_FILE=51700@flex2.ecs.csus.edu
+MAGIC_COLOR=16bit
+LINK_TIMEOUT=3
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_ALL=C
+LAI_LIB=/usr/pkg/smartmodel
+JAVA_HOME=/usr/pkg/java
+HOSTTYPE=i386-linux
+HELPPATH=/usr/openwin/lib/help
+G_BROKEN_FILENAMES=1
+GUIDEHOME=/usr/openwin/lib/guide
+GTK_RC_FILES=/etc/gtk/gtkrc:/gaia/class/student/bibodij/.gtkrc-1.2-gnome2
+GROUP=stdcsc
+GNOME_KEYRING_SOCKET=/tmp/keyring-VkxNsG/socket
+GNOME_KEYRING_PID=15436
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+GIO_LAUNCHED_DESKTOP_FILE_PID=25329
+GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/gnome-terminal.desktop
+GDM_LANG=en_US.UTF-8
+GDM_KEYBOARD_LAYOUT=us
+GDMSESSION=gnome
+DESKTOP_SESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-dKND4iQpNj,guid=71babe7fb6f7079d8dcdd316004aa612
+CVS_RSH=ssh
+COLORTERM=gnome-terminal
+CDS_LIC_FILE=51700@flex2.ecs.csus.edu
+0
+8
+1476861170 myXOR.v
+1476848791 invertor.v
+1476861328 cgu.v
+1476861240 pg_su.v
+1476847611 cla2bitAdder.v
+1476861366 cla8bitAdder.v
+1476861420 adderSubtractor.v
+1476862746 testBench.v
+4
+0 
+1400212016 /titan/software/synopsys14/vcs/linux/lib/libvirsim.so
+1400211768 /titan/software/synopsys14/vcs/linux/lib/librterrorinf.so
+1400211645 /titan/software/synopsys14/vcs/linux/lib/libsnpsmalloc.so
+1476862758 simv.daidir

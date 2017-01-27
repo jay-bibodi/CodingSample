@@ -1,0 +1,15 @@
+module myXOR(x,y,f);
+
+input x,y;
+output f;
+
+wire xor1, xor2, xor3, xor4;
+
+not  n1(xor1,x);
+not  n2(xor2,y);
+
+nand n3(xor3,xor1,y);
+nand n4(xor4,xor2,x);
+nand n5(f,xor3,xor4);
+
+endmodule
